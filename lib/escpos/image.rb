@@ -5,11 +5,11 @@ require_relative "image_processors/mini_magick"
 module Escpos
 
   # Images
-  IMAGE = [ 0x1d, 0x76, 0x30, 0x00 ] # Start image pixel data
+  PIXEL_IMAGE = [ 0x1d, 0x76, 0x30, 0x00 ] # Start image pixel data
 
   class Image
 
-    VERSION = "0.0.12"
+    VERSION = "0.0.11"
 
     attr_reader :processor, :options
 
@@ -47,7 +47,7 @@ module Escpos
       end
 
       [
-        Escpos.sequence(IMAGE),
+        Escpos.sequence(PIXEL_IMAGE),
         [ processor.image.width / 8, processor.image.height ].pack("SS"),
         bits.pack("C*")
       ].join
